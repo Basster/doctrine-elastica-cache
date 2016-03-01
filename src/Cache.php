@@ -207,6 +207,7 @@ class Cache extends CacheProvider
     protected function doFlush()
     {
         $this->getType()->delete();
+        $this->type = null;
 
         return true;
     }

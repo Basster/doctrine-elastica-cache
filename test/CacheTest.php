@@ -199,6 +199,13 @@ class CacheTest extends \PHPUnit_Framework_TestCase
     {
         $this->type->delete()->shouldBeCalled();
         self::assertTrue($this->cache->flushAll());
+
+        $refClass = new \ReflectionClass($this->cache);
+        $typeProp = $refClass->getProperty('type');
+        $typeProp->setAccessible(true);
+        $typeVal = $typeProp->getValue($this->cache);
+
+        self::assertNull($typeVal);
     }
 
     /**
